@@ -11,7 +11,7 @@ import pageObjects.LoginPage;
 import pageObjects.MenuPage;
 import pageObjects.WelcomePage;
 
-public class Oefening8 {
+public class Exercise07_Switching {
 
 	public static void main(String[] args) {
 		

@@ -26,6 +26,13 @@ public class MenuPage {
 	
 	@FindBy(how = How.LINK_TEXT, using ="NOTEXISTING")
 	private WebElement btnNotExisting;
+	
+	@FindBy(how = How.LINK_TEXT, using = "Stats")
+	private WebElement btnStats;
+	
+	@FindBy(how = How.LINK_TEXT, using = "Connections")
+	private WebElement btnConnections;
+	
 
 	
 	/**
@@ -50,6 +57,22 @@ public class MenuPage {
 	public void admin() {
 		System.out.println("click on Admin button");
 		btnAdmin.click();
+	}
+	
+	/**
+	 * Clicks on the stats button
+	 */
+	public void stats() {
+		System.out.println("click on Stats button");
+		btnStats.click();
+	}
+	
+	/**
+	 * Clicks on the connections button
+	 */
+	public void connections() {
+		System.out.println("click on Connections button");
+		btnConnections.click();
 	}
 	
 	/**

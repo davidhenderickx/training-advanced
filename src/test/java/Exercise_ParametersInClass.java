@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -14,7 +15,7 @@ import pageObjects.LoginPage;
 import pageObjects.MenuPage;
 import pageObjects.WelcomePage;
 
-public class Oefening12_ParametersXML {
+public class Exercise_ParametersInClass {
 
 	private static MenuPage menu = new MenuPage();
 	private static LoginPage loginPage = new LoginPage();
@@ -39,19 +40,22 @@ public class Oefening12_ParametersXML {
 	public void beforeTheTest() {
 		menu.logout();
 	}
+	
+	@DataProvider(name="login")
+    public Object[][] getDataFromDataprovider(){
+    return new Object[][] 
+    	{
+            { "admin", "superduper" },
+        };
+	}
 
-	@Parameters({ "username_testNG", "password_testNG" })
-	@Test
+	@Test(dataProvider="login")
 	public void loginWithCorrectUserNameAndPassword(String username, String password) {
 		loginPage.loginWith(username, password);
 		Assert.assertTrue(welcomePage.isWelcomeMessageShown(), "The welcome message is not shown");
 	}
 	
-	@Test
-	public void loginWithCorrectUserNameAndPassword2() {
-		loginPage.loginWith("admin", "superduper");
-		Assert.assertTrue(welcomePage.isWelcomeMessageShown(), "The welcome message is not shown");
-	}
+	
 
 	
 	

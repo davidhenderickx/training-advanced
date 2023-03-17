@@ -30,6 +30,12 @@ public class AdminPage {
 	@FindBy(how = How.XPATH, using ="//td[@onclick='createUser()']/span")
 	private WebElement btnCreateUser;
 	
+	@FindBy(how = How.XPATH, using="//*[@onclick='populateForTesting(true)']")
+	private WebElement btnPopulate;
+	
+	@FindBy(how = How.XPATH, using="//*[@onclick='resetAddressBook(true)']")
+	private WebElement btnResetConnections;
+	
 	
 	/**
 	 * Waits until the page is shown
@@ -59,6 +65,16 @@ public class AdminPage {
 		fldNewUsername.sendKeys(username);
 		fldNewPassword.sendKeys(password);
 		btnCreateUser.click();
+	}
+	
+	public void populateForTesting(){
+		btnPopulate.click();
+		DriverManager.getDriver().switchTo().alert().accept();
+	}
+	
+	public void resetConnections(){
+		btnResetConnections.click();
+		DriverManager.getDriver().switchTo().alert().accept();
 	}
 	
 

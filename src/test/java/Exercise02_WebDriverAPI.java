@@ -2,7 +2,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class Oefening2 {
+public class Exercise02_WebDriverAPI {
 
 	public static void main(String[] args) {
 

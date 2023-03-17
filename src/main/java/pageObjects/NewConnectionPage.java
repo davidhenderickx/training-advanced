@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import dataholders.Connection;
 import helper.DriverManager;
 
 /**
@@ -34,7 +35,7 @@ public class NewConnectionPage {
 	@FindBy(how = How.ID, using ="telephone")
 	private WebElement fldTelephone;
 	
-	@FindBy(how = How.ID, using ="lastName")
+	@FindBy(how = How.ID, using ="company")
 	private WebElement fldCompany;
 	
 	@FindBy(how = How.ID, using ="SSU")
@@ -48,6 +49,11 @@ public class NewConnectionPage {
 	
 	@FindBy(how = How.XPATH, using ="//td[@id='add']//label")
 	private WebElement btnAdd;
+	
+	@FindBy(how = How.XPATH, using ="//div[@id='errors']//p[@class='feedback']")
+	private WebElement txtSuccessMessage;
+	
+
 		
 	
 	/**
@@ -94,6 +100,43 @@ public class NewConnectionPage {
 		
 		btnAdd.click();
 		
+	}
+	
+	
+	public void createConnection(Connection c){
+		System.out.println("Creating a new connection");
+		
+		fldFirstName.clear();
+		fldFirstName.sendKeys(c.getFirstName());
+		
+		fldLastName.clear();
+		fldLastName.sendKeys(c.getLastName());
+		
+		new Select(cbxSex).selectByVisibleText(c.getSex());
+		
+		fldEmail.clear();
+		fldEmail.sendKeys(c.getMail());	
+		
+		fldTelephone.click();
+		fldTelephone.sendKeys(c.getTelephone());
+		
+		fldCompany.click();
+		fldCompany.clear();
+		fldCompany.sendKeys(c.getCompany());
+		
+		new Select(cbxSSU).selectByVisibleText(c.getSsu());
+		
+		new Select(cbxSeniority).selectByVisibleText(c.getExperience());
+		
+		fldAdditionalInfo.clear();
+		fldAdditionalInfo.sendKeys(c.getInfo());
+		
+		btnAdd.click();
+	}
+	
+	
+	public Boolean isSuccessMessageShown() {
+		return txtSuccessMessage.isDisplayed();
 	}
 
 }

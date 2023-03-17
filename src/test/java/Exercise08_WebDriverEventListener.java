@@ -10,18 +10,21 @@ import pageObjects.LoginPage;
 import pageObjects.MenuPage;
 import pageObjects.WelcomePage;
 
-public class Oefening5WithEventListenerInEDriverManager {
+public class Exercise08_WebDriverEventListener {
 
 	public static void main(String[] args) {
 		
-		EDriverManager.getDriver().get("https://satrngselcypr.z16.web.core.windows.net/#");
+		EventFiringWebDriver eDriver = new EventFiringWebDriver(DriverManager.getDriver());
+		eDriver.register(new TrainingListener());
+		
+		eDriver.get("https://satrngselcypr.z16.web.core.windows.net/#");
 		
 		MenuPage menu = new MenuPage();
 		LoginPage loginPage = new LoginPage();
 		WelcomePage welcomePage = new WelcomePage();
-		PageFactory.initElements(EDriverManager.getDriver(), menu);
-		PageFactory.initElements(EDriverManager.getDriver(), loginPage);
-		PageFactory.initElements(EDriverManager.getDriver(), welcomePage);
+		PageFactory.initElements(eDriver, menu);
+		PageFactory.initElements(eDriver, loginPage);
+		PageFactory.initElements(eDriver, welcomePage);
 		
 		
 		menu.logout();

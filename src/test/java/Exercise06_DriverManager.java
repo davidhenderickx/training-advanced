@@ -1,37 +1,32 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import helper.DriverManager;
-import helper.EDriverManager;
-import helper.TrainingListener;
 import pageObjects.LoginPage;
 import pageObjects.MenuPage;
 import pageObjects.WelcomePage;
 
-public class Oefening5WithEventListener {
+public class Exercise06_DriverManager {
 
 	public static void main(String[] args) {
 		
-		EventFiringWebDriver eDriver = new EventFiringWebDriver(DriverManager.getDriver());
-		eDriver.register(new TrainingListener());
+		DriverManager.setFirefoxDriver();
+		DriverManager.setChromeDriver();
 		
-		eDriver.get("https://satrngselcypr.z16.web.core.windows.net/#");
+		DriverManager.getDriver().get("https://satrngselcypr.z16.web.core.windows.net/#");
 		
 		MenuPage menu = new MenuPage();
 		LoginPage loginPage = new LoginPage();
 		WelcomePage welcomePage = new WelcomePage();
-		PageFactory.initElements(eDriver, menu);
-		PageFactory.initElements(eDriver, loginPage);
-		PageFactory.initElements(eDriver, welcomePage);
+		PageFactory.initElements(DriverManager.getDriver(), menu);
+		PageFactory.initElements(DriverManager.getDriver(), loginPage);
+		PageFactory.initElements(DriverManager.getDriver(), welcomePage);
 		
 		
 		menu.logout();
 		loginPage.setLanguageTo("French");
 		loginPage.loginWith("admin", "superduper");
-		
-		menu.clickOnMenuItemThatDoesntExist();
 		
 		if (welcomePage.isWelcomeMessageShown()) {
 			System.out.println("PASSED: The welcome message is shown");
@@ -45,7 +40,7 @@ public class Oefening5WithEventListener {
 			System.out.println("FAILED: The welcome message is not correct");
 		}
 		
-		
+		DriverManager.killDriver();
 		
 
 	}

@@ -12,7 +12,7 @@ import pageObjects.LoginPage;
 import pageObjects.MenuPage;
 import pageObjects.WelcomePage;
 
-public class Oefening11 {
+public class Exercise11_Login {
 
 	private static MenuPage menu = new MenuPage();
 	private static LoginPage loginPage = new LoginPage();
@@ -25,7 +25,7 @@ public class Oefening11 {
 		PageFactory.initElements(DriverManager.getDriver(), loginPage);
 		PageFactory.initElements(DriverManager.getDriver(), welcomePage);
 		PageFactory.initElements(DriverManager.getDriver(), adminPage);
-		DriverManager.getDriver().get("https://satrngselcypr.z16.web.core.windows.net/#");
+		DriverManager.getDriver().get("https://satrngselcypr.z16.web.core.windows.net/");
 	}
 	
 	@AfterSuite
