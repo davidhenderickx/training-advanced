@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Login Tests">
-	<listeners>
-        <listener class-name="reporting.TestListener"/>
-    </listeners>
+    <parameter name="username_testNG" value="admin"/>
+    <parameter name="password_testNG" value="superduper"/>
     <test name="LoginTest" >
         <classes>
-            <class name="Exercise_Report"/>
+            <class name="Oefening12_ParametersXML"/>
         </classes>
     </test>
 </suite>

@@ -11,41 +11,32 @@ import pageObjects.AdminPage;
 import pageObjects.LoginPage;
 import pageObjects.MenuPage;
 import pageObjects.WelcomePage;
+import reporting.ExtentReportManager;
 
-public class Exercise11_Login {
+public class Exercise_Report extends AbstractTest {
 
-	private static MenuPage menu = new MenuPage();
-	private static LoginPage loginPage = new LoginPage();
-	private static WelcomePage welcomePage = new WelcomePage();
-	private static AdminPage adminPage = new AdminPage();
-
-	@BeforeSuite 
-	public static void setup() {
-		PageFactory.initElements(DriverManager.getDriver(), menu);
-		PageFactory.initElements(DriverManager.getDriver(), loginPage);
-		PageFactory.initElements(DriverManager.getDriver(), welcomePage);
-		PageFactory.initElements(DriverManager.getDriver(), adminPage);
-		DriverManager.getDriver().get("https://satrngselcypr.z16.web.core.windows.net/");
-	}
 	
-	@AfterSuite
-	public static void teardown() {
-		DriverManager.killDriver();
+	@BeforeSuite
+	public static void setupTest(){
+		driver.get("https://satrngselcypr.z16.web.core.windows.net/");
 	}
 	
 	@BeforeMethod
-	public void beforeTheTest() {
-		menu.logout();
+	public void logout(){
+		menuPage.logout();	
+		
 	}
 
 	@Test
 	public void loginWithCorrectUserNameAndPassword() {
+		ExtentReportManager.logStep("Logging in with correct user and password");
 		loginPage.loginWith("admin", "superduper");
 		Assert.assertTrue(welcomePage.isWelcomeMessageShown(), "The welcome message is not shown");
 	}
 
 	@Test
 	public void loginWithIncorrectPassword() {
+		ExtentReportManager.logStep("Logging in with incorrect password");
 		loginPage.loginWith("admin", "wrong");
 		Assert.assertTrue(loginPage.isErrorShown(), "The error message is not shown");
 		Assert.assertTrue(loginPage.getErrorMessage().equals("Unable to log in with the given credentials. Please try again."), "The incorrect error message is displayed");
@@ -53,6 +44,7 @@ public class Exercise11_Login {
 
 	@Test
 	public void loginWithIncorrectUserName() {
+		ExtentReportManager.logStep("Logging in with incorrect user");
 		loginPage.loginWith("wrong", "superduper");
 		Assert.assertTrue(loginPage.isErrorShown(), "The error message is not shown");
 		Assert.assertTrue(loginPage.getErrorMessage().equals("Unable to log in with the given credentials. Please try again."), "The incorrect error message is displayed");
@@ -60,11 +52,18 @@ public class Exercise11_Login {
 
 	@Test
 	public void loginWithEmptyUserNameAndPassword() {
+		ExtentReportManager.logStep("Logging in with empty credentials");
 		loginPage.loginWith("", "");
 		Assert.assertTrue(loginPage.isErrorShown(), "The error message is not shown");
 		Assert.assertTrue(loginPage.getErrorMessage().equals("Please fill in all the fields."), "The incorrect error message is displayed");
 	}
 	
-
+	@Test
+	public void failingTest() {
+		ExtentReportManager.logStep("This test will fail");
+		loginPage.loginWith("", "");
+		Assert.assertTrue(loginPage.isErrorShown(), "The error message is not shown");
+		Assert.assertTrue(loginPage.getErrorMessage().equals("Please fill in a the fields."), "The incorrect error message is displayed");
+	}
 
 }
