@@ -20,7 +20,7 @@ public class Exercise_Javascript extends AbstractTest {
 	
 	
 	@Test
-	public void validCreation(){
+	public void connectionsJavascriptFunctions(){
 		loginPage.loginWith("admin", "superduper");
 		
 		javascriptPage.resetAddressBook();
