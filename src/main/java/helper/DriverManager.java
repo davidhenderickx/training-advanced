@@ -37,9 +37,10 @@ public class DriverManager {
 		killDriver();
 		System.setProperty("webdriver.chrome.driver",
 				"C:\\Users\\dhenderickx\\Downloads\\chromedriver.exe");
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-allow-origins=*");
-		driver = new ChromeDriver(options);
+		//ChromeOptions options = new ChromeOptions();
+		//options.addArguments("--remote-allow-origins=*");
+		//driver = new ChromeDriver(options);
+		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 	}
 	

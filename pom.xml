@@ -14,7 +14,7 @@
 		<maven-compiler-plugin-version>3.10.1</maven-compiler-plugin-version>
 		<maven-jar-plugin-version>3.2.2</maven-jar-plugin-version>
 		<build-directory>${project.build.directory}</build-directory>
-		<selenium-version>4.8.1</selenium-version>
+		<selenium-version>4.8.3</selenium-version>
 		<testng-version>7.1.0</testng-version>
 		<log4j-version>2.14.1</log4j-version>
 		<extentreports-version>5.0.8</extentreports-version>

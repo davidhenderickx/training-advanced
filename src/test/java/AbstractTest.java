@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeSuite;
 import helper.DriverManager;
 import pageObjects.AdminPage;
 import pageObjects.ConnectionsPage;
+import pageObjects.JavascriptPage;
 import pageObjects.LoginPage;
 import pageObjects.MenuPage;
 import pageObjects.NewConnectionPage;
@@ -15,13 +16,15 @@ import pageObjects.WelcomePage;
 public abstract class AbstractTest {
 	protected static WebDriver driver;
 	
-	protected static MenuPage menuPage;
-	protected static LoginPage loginPage;
-	protected static WelcomePage welcomePage;
-	protected static ConnectionsPage connectionsPage;
 	protected static AdminPage adminPage;
+	protected static ConnectionsPage connectionsPage;
+	protected static JavascriptPage javascriptPage;
+	protected static MenuPage menuPage;
 	protected static NewConnectionPage newConnectionPage;
+	protected static LoginPage loginPage;
 	protected static StatsPage statsPage;
+	protected static WelcomePage welcomePage;
+	
 	
 	@BeforeSuite
 	public static void beforeAllTests(){
@@ -47,6 +50,8 @@ public abstract class AbstractTest {
 		
 		statsPage = new StatsPage();
 		PageFactory.initElements(driver, statsPage);
+		
+		javascriptPage = new JavascriptPage();
 	}
 	
 	@AfterSuite
